@@ -93,6 +93,8 @@ A proxy contracts are used when you want to upgrade your contracts.
 The proxy contract stays immutable, but you can deploy a new contract behind the proxy contract 
 - it changes the target address inside the proxy contract.
 
+6. need to call ERC20. initialize in the initialize function
+
 
 
 
