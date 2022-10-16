@@ -1,6 +1,9 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
+require("@nomicfoundation/hardhat-toolbox");
+
 module.exports = {
   solidity: {
     compilers: [
@@ -14,5 +17,11 @@ module.exports = {
         version: "0.4.24",
       },
     ],
+  },
+  networks: {
+    goerli: {
+      url: process.env.ALCHEMY_API_KEY || '',
+      accounts: process.env.GOERLI_PRIVATE_KEY !== undefined ? [process.env.GOERLI_PRIVATE_KEY] : [],
+    }
   },
 };

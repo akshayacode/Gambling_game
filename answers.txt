@@ -5,8 +5,12 @@ It is the fee paid to miners for providering computational power.
 
 Gas Limit-> set by us
 Block gas Limit -> Set by Network 
+Gas Price -> Ether/gas
 
-Gas Fee = Gas units(limit) * Gas Price/Unit (in Gwei)
+Gas Fee = Gas Limit * Gas Price/Unit (in Gwei)
+
+If the contract runs out of gas, the transaction will fail, all changes to the 
+state variables will be undone but still want to pay for the gas spent
 
 2.Differnce between Memory, storage and stack.
 
@@ -85,6 +89,9 @@ contract MyContract {
 
 5. Proxy Contract
 
+A proxy contracts are used when you want to upgrade your contracts. 
+The proxy contract stays immutable, but you can deploy a new contract behind the proxy contract 
+- it changes the target address inside the proxy contract.
 
 
 
