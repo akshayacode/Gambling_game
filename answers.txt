@@ -1,0 +1,92 @@
+1. How is gas Usage Calculated?
+
+Gas is the Unit of computation
+It is the fee paid to miners for providering computational power.
+
+Gas Limit-> set by us
+Block gas Limit -> Set by Network 
+
+Gas Fee = Gas units(limit) * Gas Price/Unit (in Gwei)
+
+2.Differnce between Memory, storage and stack.
+
+Storage
+ - Holds data between function calls.
+ - Permanent storage
+ - Expensive to use ( Consumes more gas)
+ - State variables are in storage
+
+Memory
+ - Temporary place to store data during execution
+ - If the execution stops the memory is  erased for the next execution.
+ - Cheaper to use (Consumes less gas )
+ - Function arguments are always in memory
+ 
+Stack
+- Temporary storage that ethereum EVM uses to bring data from other storage to work on them
+- holds small variables(limitted amount of values)
+- Almost Free to use
+- Local variables apart from struct, mappings and arrays are stored in stack
+
+3.Modifiers
+
+Modifiers are used to check a condition prior to executing a function.
+
+If the function does not meet the requirement specified in the modifier, an exeception is thrown and the function execution stops.
+
+Modifiers are declared as:
+
+modifier onlyAdmin(){
+
+     require(msg.sendern == admin, " Only Admin can execute this function");
+     _;// this symbol is called as merge wildcard
+}
+
+
+Merge Wildcard -> The body of the function is inserted where that symbol is placed in the modifiers's definition
+
+
+4. Interfaces 
+
+Interfaces allows us to interact with another contract
+It does not have any state variables, contructors or any functions with implementation.
+They contain only the function declarations.
+function type will only be external.
+The difference between an interface and a regular contract is that each function ends with ; instead of { }
+
+Example:
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint public count;
+
+    function increment() external {
+        count += 1;
+    }
+}
+
+interface ICounter {
+    function count() external view returns (uint);
+
+    function increment() external;
+}
+
+contract MyContract {
+    function incrementCounter(address _counter) external {
+        ICounter(_counter).increment();
+    }
+
+    function getCount(address _counter) external view returns (uint) {
+        return ICounter(_counter).count();
+    }
+}
+
+5. Proxy Contract
+
+
+
+
+
+
